@@ -36,6 +36,7 @@ public class FLog {
     private static String sLogFileName;
 
     private static boolean sEnableLogcat = true;
+    private static boolean sEnableSystemOut = false;
     private static boolean sEnableFileLog = false;
 
     public static final DateFormat sFileLogDateFormat =
@@ -55,6 +56,14 @@ public class FLog {
      */
     public static void setEnableLogCat(boolean enable) {
         sEnableLogcat = enable;
+    }
+
+    /**
+     * Enable or disable System.out
+     * @param enable enabling System.out
+     */
+    public static void setEnableSystemOut(boolean enable) {
+        sEnableSystemOut = enable;
     }
 
     /**
@@ -104,6 +113,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.v(tag, msg);
+        if (sEnableSystemOut) System.out.println(msg);
         if (sEnableFileLog) writeLogToFile(LogType.VERBOSE, tag, msg);
     }
 
@@ -122,6 +132,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.v(tag, msg, e);
+        if (sEnableSystemOut) { System.out.println(msg); e.printStackTrace(); }
         if (sEnableFileLog) writeLogToFile(LogType.VERBOSE, tag, msg, e);
     }
 
@@ -142,6 +153,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.d(tag, msg);
+        if (sEnableSystemOut) System.out.println(msg);
         if (sEnableFileLog) writeLogToFile(LogType.DEBUG, tag, msg);
     }
 
@@ -160,6 +172,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.d(tag, msg, e);
+        if (sEnableSystemOut) { System.out.println(msg); e.printStackTrace(); }
         if (sEnableFileLog) writeLogToFile(LogType.DEBUG, tag, msg, e);
     }
 
@@ -180,6 +193,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.i(tag, msg);
+        if (sEnableSystemOut) System.out.println(msg);
         if (sEnableFileLog) writeLogToFile(LogType.INFO, tag, msg);
     }
 
@@ -198,6 +212,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.i(tag, msg, e);
+        if (sEnableSystemOut) { System.out.println(msg); e.printStackTrace(); }
         if (sEnableFileLog) writeLogToFile(LogType.INFO, tag, msg, e);
     }
 
@@ -218,6 +233,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.w(tag, msg);
+        if (sEnableSystemOut) System.out.println(msg);
         if (sEnableFileLog) writeLogToFile(LogType.WARNING, tag, msg);
     }
 
@@ -236,6 +252,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.w(tag, msg, e);
+        if (sEnableSystemOut) { System.out.println(msg); e.printStackTrace(); }
         if (sEnableFileLog) writeLogToFile(LogType.WARNING, tag, msg, e);
     }
 
@@ -256,6 +273,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.e(tag, msg);
+        if (sEnableSystemOut) System.out.println(msg);
         if (sEnableFileLog) writeLogToFile(LogType.ERROR, tag, msg);
     }
 
@@ -274,6 +292,7 @@ public class FLog {
         }
 
         if (sEnableLogcat) Log.e(tag, msg, e);
+        if (sEnableSystemOut) { System.out.println(msg); e.printStackTrace(); }
         if (sEnableFileLog) writeLogToFile(LogType.ERROR, tag, msg, e);
     }
 
